@@ -2,20 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Global body styles */
+body {
+  font-family: 'sans-serif';
+  background-color: white;
+  color: black;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Custom utility classes */
+@layer utilities {
+  .text-foreground {
+    color: var(--foreground-color, black); /* Custom color variable */
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* CSS Variables for Light and Dark Modes */
+@layer base {
+  :root {
+    --background: 255, 255, 255; /* Light mode background */
+    --foreground: 0, 0, 0; /* Light mode text */
+  }
+
+  .dark {
+    --background: 0, 0, 0; /* Dark mode background */
+    --foreground: 255, 255, 255; /* Dark mode text */
+  }
+
+  body {
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+  }
+}
+
+/* Reset styles */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 }
